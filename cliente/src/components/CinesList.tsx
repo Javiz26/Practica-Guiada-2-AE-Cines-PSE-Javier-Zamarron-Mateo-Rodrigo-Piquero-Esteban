@@ -8,7 +8,7 @@ function CinesList() {
   const [cinemas, setCinemas] = useState<Cinema[]>([])
 
   useEffect(() => {
-    axios.get('http://localhost:3005/cinemas/allCinemas', {})
+    axios.get('http://localhost:3000/api/cinemas', {})
       .then(res => setCinemas(res.data))
       .catch(err => console.error(err))
   }, [])
@@ -16,7 +16,7 @@ function CinesList() {
   return (
     <ul style={{gap: '10px', listStyle: 'none', padding: 0}}>
       {cinemas.map((cinema: Cinema) => (
-        <CinemaItem key={cinema.id} cinema={cinema} />
+        <CinemaItem key={cinema.identificador} cinema={cinema} />
       ))}
     </ul>
   )

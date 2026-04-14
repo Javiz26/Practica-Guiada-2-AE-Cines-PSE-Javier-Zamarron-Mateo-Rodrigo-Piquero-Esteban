@@ -1,5 +1,5 @@
 export interface Cinema {
-    id: number;
-    name: string;
-    capacity: number;
+    identificador: number;
+    nombre: string;
+    capacidad: number;
 }
