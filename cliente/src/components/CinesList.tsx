@@ -1,24 +1,57 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import axios, { type AxiosResponse } from 'axios'
+import { Container, Typography, Grid, Box, CircularProgress } from '@mui/material'
 import type { Cinema } from '../types/cinema'
-
-import CinemaItem from './CinesItem'
+import CineItem from './CinesItem'
 
 function CinesList() {
-  const [cinemas, setCinemas] = useState<Cinema[]>([])
+  const [cines, setCines] = useState<Cinema[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/cinemas', {})
-      .then(res => setCinemas(res.data))
-      .catch(err => console.error(err))
+    // Pedimos la cartelera incluida con withCatalog: true
+    axios.post('http://localhost:3000/api/cinemas', { withCatalog: true })
+      .then((res: AxiosResponse) => {
+        const data = res.data.data
+        if (data && data.length > 0) {
+          setCines(data as Cinema[])
+        }
+        setLoading(false)
+      })
+      .catch(() => {
+        setLoading(false)
+      })
   }, [])
 
   return (
-    <ul style={{gap: '10px', listStyle: 'none', padding: 0}}>
-      {cinemas.map((cinema: Cinema) => (
-        <CinemaItem key={cinema.identificador} cinema={cinema} />
-      ))}
-    </ul>
+    <Container maxWidth="lg" sx={{ py: 5 }}>
+      <Box sx={{ mb: 6, textAlign: 'center' }}>
+        <Typography variant="h3" component="h1" fontWeight="800" color="primary.main" gutterBottom>
+          Nuestros Cines
+        </Typography>
+        <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto' }}>
+          Descubre la cartelera en nuestros cines y no te pierdas ningún estreno.
+        </Typography>
+      </Box>
+
+      {loading ? (
+        <Box sx={{ display: 'flex', justifyContent: 'center', py: 10 }}>
+          <CircularProgress size={60} thickness={4} />
+        </Box>
+      ) : (!cines || cines.length === 0) ? (
+        <Typography variant="h6" color="text.secondary" align="center" sx={{ py: 8 }}>
+          No hay cines disponibles en este momento.
+        </Typography>
+      ) : (
+        <Grid container spacing={4} alignItems="stretch">
+          {cines.map((cinema: Cinema) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={cinema.identificador}>
+              <CineItem cinema={cinema} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </Container>
   )
 }
 
