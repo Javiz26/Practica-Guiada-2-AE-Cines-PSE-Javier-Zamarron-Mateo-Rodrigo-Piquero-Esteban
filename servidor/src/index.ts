@@ -1,0 +1,19 @@
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import movieRoutes from './routes/movie.routes';
+import cinemaRoutes from './routes/cinema.routes';
+
+const app = express();
+const PORT = 3000;
+
+app.use(cors());
+app.use(express.json());
+
+// Enganchamos las rutas de cines y películas
+app.use('/api', movieRoutes);
+app.use('/api', cinemaRoutes);
+
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor funcionando en http://localhost:${PORT}`);
+});

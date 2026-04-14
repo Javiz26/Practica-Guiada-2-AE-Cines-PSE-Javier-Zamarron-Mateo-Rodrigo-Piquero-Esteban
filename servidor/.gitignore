@@ -1,0 +1,22 @@
+node_modules
+# Keep environment variables out of version control
+.env
+
+generated/
+
+# Environment variables (¡muy importante, contiene la connection string!)
+.env
+.env.local
+.env.*
+
+# TypeScript compiled output
+dist/
+build/
+
+# Prisma generated client
+node_modules/.prisma/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
