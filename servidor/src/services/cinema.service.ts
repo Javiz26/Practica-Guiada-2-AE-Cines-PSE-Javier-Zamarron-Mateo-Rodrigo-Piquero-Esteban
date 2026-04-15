@@ -63,3 +63,27 @@ export const getFilteredCinemas = async (filters: CinemaFilterDTO) => {
     return resultado;
   });
 };
+
+export const createCinema = async (cinemaData: any) => {
+  const newCinema = await prisma.theater.create({
+    data: {
+      name: cinemaData.nombre,
+      capacity: cinemaData.capacidad}
+  });
+  return { newCinema };
+};
+
+export const updateCinema = async (id: number, cinemaData: any) => {
+  const updatedCinema = await prisma.theater.update({
+    where: { id },
+    data: { name: cinemaData.nombre, capacity: cinemaData.capacidad }
+  });
+  return { updatedCinema };
+};
+
+export const deleteCinema = async (id: number) => {
+  const deletedCinema = await prisma.theater.delete({
+    where: { id }
+  });
+  return { deletedCinema };
+};

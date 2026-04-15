@@ -1,9 +1,6 @@
 import { Request, Response } from 'express';
 import { CinemaFilterSchema } from '../dtos/cinema.dto';
 import * as cinemaService from '../services/cinema.service';
-import { createCinema } from '../services/cinema.service';
-import { updateCinema } from '../services/cinema.service';
-import { deleteCinema } from '../services/cinema.service';
 
 export const fetchCinemas = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -30,8 +27,12 @@ export const createCinema = async (req: Request, res: Response): Promise<void> =
 export const updateCinema = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
+    if (!id || isNaN(Number(id))) {
+      res.status(400).json({ success: false, message: "ID de cine inválido" });
+      return;
+    }
     const cinemaData = req.body;
-    const updatedCinema = await cinemaService.updateCinema(id, cinemaData);
+    const updatedCinema = await cinemaService.updateCinema(Number(id), cinemaData);
 
     if (!updatedCinema) {
       res.status(404).json({ success: false, message: "Cine no encontrado" });
@@ -46,7 +47,11 @@ export const updateCinema = async (req: Request, res: Response): Promise<void> =
 export const deleteCinema = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const deletedCinema = await cinemaService.deleteCinema(id);
+    if (!id || isNaN(Number(id))) {
+      res.status(400).json({ success: false, message: "ID de cine inválido" });
+      return;
+    }
+    const deletedCinema = await cinemaService.deleteCinema(Number(id));
     if (!deletedCinema) {
       res.status(404).json({ success: false, message: "Cine no encontrado" });
       return;
