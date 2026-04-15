@@ -3,7 +3,9 @@ import passport from 'passport';
 import { fetchCinemas } from '../controllers/cinema.controller';
 import { Role } from '../../prisma/generated/prisma';
 import { authorize } from '../middleware/role';
-
+import { createCinema } from '../controllers/cinema.controller';
+import { updateCinema } from '../controllers/cinema.controller';
+import { deleteCinema } from '../controllers/cinema.controller';
 const router = Router();
 
 router.post('/cinemas',
@@ -11,6 +13,21 @@ router.post('/cinemas',
     authorize([Role.CINEMA, Role.ADMIN]),
     fetchCinemas
 );
-router.post('')
+router.post('/cinemas/create',
+    passport.authenticate('jwt', { session: false }),
+    authorize([Role.CINEMA, Role.ADMIN]),
+    createCinema
+);
+router.put('/cinemas/:id',
+    passport.authenticate('jwt', { session: false }),
+    authorize([Role.CINEMA, Role.ADMIN]),
+    updateCinema
+);
+router.delete('/cinemas/:id',
+    passport.authenticate('jwt', { session: false }),
+    authorize([Role.CINEMA, Role.ADMIN]),
+    deleteCinema
+);
+
 
 export default router;
