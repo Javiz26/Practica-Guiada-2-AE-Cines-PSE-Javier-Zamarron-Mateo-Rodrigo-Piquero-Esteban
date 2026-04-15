@@ -3,6 +3,7 @@ node_modules
 .env
 
 generated/
+migrations/
 
 # Environment variables (¡muy importante, contiene la connection string!)
 .env
