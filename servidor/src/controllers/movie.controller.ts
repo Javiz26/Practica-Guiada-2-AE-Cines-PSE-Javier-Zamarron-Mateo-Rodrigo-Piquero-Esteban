@@ -27,7 +27,11 @@ export const updateMovies = async (req: Request, res: Response): Promise<void> =
   try {
     const { id } = req.params;
     const movieData = req.body;
-    const updatedMovie = await movieService.updateMovie(id, movieData);
+    if(!id) {
+      res.status(400).json({ success: false, message: "ID de película es requerido" });
+      return;
+    }
+    const updatedMovie = await movieService.updateMovie(Number(id), movieData);
     res.status(200).json({ success: true, data: updatedMovie });
   } catch (error) {
     res.status(400).json({ success: false, message: "Error al actualizar la película", error });
@@ -37,7 +41,11 @@ export const updateMovies = async (req: Request, res: Response): Promise<void> =
 export const deleteMovies = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
-    await movieService.deleteMovie(id);
+    if (!id) {
+      res.status(400).json({ success: false, message: "ID de película es requerido" });
+      return;
+    }
+    await movieService.deleteMovie(Number(id));
     res.status(200).json({ success: true, message: "Película eliminada correctamente" });
   } catch (error) {
     res.status(400).json({ success: false, message: "Error al eliminar la película", error });

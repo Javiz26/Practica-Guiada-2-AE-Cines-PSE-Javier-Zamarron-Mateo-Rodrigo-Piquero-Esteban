@@ -41,3 +41,27 @@ export const getFilteredMovies = async (filters: MovieFilterDTO) => {
     reparto: movie.actors
   }));
 };
+
+export const createMovie = async (movieData: any) => {
+  const newMovie = await prisma.movie.create({
+    data: {
+      name: movieData.nombre,
+      actors: movieData.actor
+    }
+  });
+  return newMovie;
+};
+
+export const updateMovie = async (id: number, movieData: any) => {
+  const updatedMovie = await prisma.movie.update({
+    where: { id },
+    data: { name: movieData.nombre, actors: movieData.actor }
+  });
+  return updatedMovie;
+};
+
+export const deleteMovie = async (id: number) => {
+  await prisma.movie.delete({
+    where: { id }
+  });
+};
