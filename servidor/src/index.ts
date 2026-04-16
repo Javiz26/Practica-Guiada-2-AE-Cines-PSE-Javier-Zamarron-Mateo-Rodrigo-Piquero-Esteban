@@ -7,6 +7,7 @@ import passport from 'passport';
 import authRoutes from './routes/auth.routes';
 import { JWTStrategy } from './libs/auth';
 
+
 const app = express();
 const PORT = 3000;
 
@@ -18,6 +19,7 @@ passport.use(JWTStrategy);
 // Enganchamos las rutas de cines y películas
 app.use('/api', movieRoutes);
 app.use('/api', cinemaRoutes);
+app.use('/api/auth', authRoutes);
 
 app.listen(PORT, () => {
   console.log(`🚀 Servidor funcionando en http://localhost:${PORT}`);

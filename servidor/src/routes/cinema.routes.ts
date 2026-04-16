@@ -8,11 +8,12 @@ import { updateCinema } from '../controllers/cinema.controller';
 import { deleteCinema } from '../controllers/cinema.controller';
 const router = Router();
 
+
 router.post('/cinemas',
     passport.authenticate('jwt', { session: false }),
-    authorize([Role.CINEMA, Role.ADMIN]),
     fetchCinemas
 );
+
 router.post('/cinemas/create',
     passport.authenticate('jwt', { session: false }),
     authorize([Role.ADMIN]),

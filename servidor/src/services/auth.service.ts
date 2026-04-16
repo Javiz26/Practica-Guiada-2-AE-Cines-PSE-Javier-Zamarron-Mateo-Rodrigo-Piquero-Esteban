@@ -13,7 +13,7 @@ export const AuthService = {
       });
       return { success: true, message: 'Usuario creado', id: user.id };
     } catch (e) {
-      return { success: false, error: 'El email ya existe' };
+      return { success: false, error: 'error' };
     }
   },
 
