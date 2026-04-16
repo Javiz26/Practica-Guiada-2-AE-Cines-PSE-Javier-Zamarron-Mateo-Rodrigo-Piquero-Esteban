@@ -11,7 +11,7 @@ function CinesList() {
   useEffect(() => {
     // Pedimos la cartelera incluida con withCatalog: true
     api.post('http://localhost:3000/api/cinemas', { withCatalog: true })
-      .then((res: AxiosResponse) => {
+      .then((res) => {
         const data = res.data.data
         if (data && data.length > 0) {
           setCines(data as Cinema[])
