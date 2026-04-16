@@ -3,6 +3,7 @@ import axios, { type AxiosResponse } from 'axios'
 import { Container, Typography, Grid, Box, CircularProgress } from '@mui/material'
 import type { Cinema } from '../types/cinema'
 import CineItem from './CinesItem'
+import api from '../middleware/api'
 
 function CinesList() {
   const [cines, setCines] = useState<Cinema[]>([])
@@ -10,7 +11,7 @@ function CinesList() {
 
   useEffect(() => {
     // Pedimos la cartelera incluida con withCatalog: true
-    axios.post('http://localhost:3000/api/cinemas', { withCatalog: true })
+    api.post('http://localhost:3000/api/cinemas', { withCatalog: true })
       .then((res: AxiosResponse) => {
         const data = res.data.data
         if (data && data.length > 0) {
@@ -54,5 +55,4 @@ function CinesList() {
     </Container>
   )
 }
-
 export default CinesList
