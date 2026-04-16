@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import axios, { type AxiosResponse } from 'axios'
 import { Container, Typography, Grid, Box, CircularProgress } from '@mui/material'
 import type { Cinema } from '../types/cinema'
 import CineItem from './CinesItem'
