@@ -18,19 +18,19 @@ router.post('/movies',
 
 router.post('/movies/create',
     passport.authenticate('jwt', {session: false}),
-    authorize([Role.CINEMA, Role.ADMIN]),
+    authorize([Role.ADMIN]),
     createMovies
 );
 
 router.put('/movies/:id',
     passport.authenticate('jwt', {session: false}),
-    authorize([Role.CINEMA, Role.ADMIN]),
+    authorize([Role.ADMIN]),
     updateMovies
 );
 
 router.delete('/movies/:id',
     passport.authenticate('jwt', {session: false}),
-    authorize([Role.CINEMA, Role.ADMIN]),
+    authorize([Role.ADMIN]),
     deleteMovies
 );
 

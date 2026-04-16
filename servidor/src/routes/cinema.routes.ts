@@ -15,17 +15,17 @@ router.post('/cinemas',
 );
 router.post('/cinemas/create',
     passport.authenticate('jwt', { session: false }),
-    authorize([Role.CINEMA, Role.ADMIN]),
+    authorize([Role.ADMIN]),
     createCinema
 );
 router.put('/cinemas/:id',
     passport.authenticate('jwt', { session: false }),
-    authorize([Role.CINEMA, Role.ADMIN]),
+    authorize([Role.ADMIN]),
     updateCinema
 );
 router.delete('/cinemas/:id',
     passport.authenticate('jwt', { session: false }),
-    authorize([Role.CINEMA, Role.ADMIN]),
+    authorize([Role.ADMIN]),
     deleteCinema
 );
 
