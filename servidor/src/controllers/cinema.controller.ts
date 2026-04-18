@@ -40,7 +40,7 @@ export const updateCinema = async (req: Request, res: Response): Promise<void> =
     }
     res.status(200).json({ success: true, data: updatedCinema });
   } catch (error) {
-    res.status(400).json({ success: false, message: "Error al actualizar el cine", error });
+   res.status(400).json({ success: false, message: "Error al actualizar el cine", error: error instanceof Error ? error.message : String(error) });
   }
 };
 
