@@ -3,4 +3,4 @@ Cuando el usuario es de tipo Cine y además tiene permisos para ese cine en conc
 
 Hay que añadir una FK de user hacia threater que sea CinemaId, también haría falta comprobar que el user es de tipo CINEMA.
 Deberíamos hacer una autenticación de Cinema para comprobar que es el cine al que pertenece cuando queramos editar añadiendo un campo en el jwtPayload.
-También deberíamos añadirlo en el registro una opción para que si marcamos que somos un cine se nos genere un cinemaId en el user.
+También deberíamos añadirlo en el registro una opción para que si marcamos que somos un cine se nos asigne un cinemaId en el user.
