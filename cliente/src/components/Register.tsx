@@ -45,7 +45,7 @@ function Register() {
 
   return (
     <>
-      {/* Si hay error, mostramos esta cajita roja */}
+      {/* Si hay error, mostramos esta alerta roja */}
       {error && (
         <div style={{ backgroundColor: '#fee2e2', color: '#991b1b', padding: '0.75rem', borderRadius: '4px', marginBottom: '1rem', textAlign: 'center', fontWeight: 'bold' }}>
           {error}

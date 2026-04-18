@@ -20,10 +20,8 @@ export default function Login() {
 
     try {
       await login(email, password);
-      // Si todo va bien, nos vamos a la lista de cines
       navigate('/cines'); 
     } catch (err) {
-      // Como ahora el AuthContext lanza el error, lo atrapamos aquí
       setError('Correo o contraseña incorrectos. Inténtalo de nuevo.');
     } finally {
       // Pase lo que pase (éxito o error), quitamos el estado de carga
@@ -33,7 +31,7 @@ export default function Login() {
 
   return (
     <>
-      {/* Si hay error, mostramos esta cajita roja */}
+      {/* Si hay error, mostramos esta alerta roja */}
       {error && (
         <div style={{ backgroundColor: '#fee2e2', color: '#991b1b', padding: '0.75rem', borderRadius: '4px', marginBottom: '1rem', textAlign: 'center', fontWeight: 'bold' }}>
           {error}

@@ -15,7 +15,7 @@ export const fetchMovies = async (req: Request, res: Response): Promise<void> =>
 
 export const createMovies = async (req: Request, res: Response): Promise<void> => {
   try {
-    const movieData = req.body; // Aquí deberías validar los datos de entrada
+    const movieData = req.body; 
     const newMovie = await movieService.createMovie(movieData);
     res.status(201).json({ success: true, data: newMovie });
   } catch (error) {

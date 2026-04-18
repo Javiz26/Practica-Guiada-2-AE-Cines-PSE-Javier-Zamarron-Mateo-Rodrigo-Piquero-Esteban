@@ -14,10 +14,10 @@ export const JWTStrategy = new Strategy(options, async (payload, done) => {
     try {
         const user = await prisma.user.findUnique({
             where: { id: payload.sub },
-            select: { id: true, email: true, role: true } // Evitar recibir hash (es innecesario)
+            select: { id: true, email: true, role: true } 
         });
-        if (user) return done(null, user); // <-- Usuario validado
-        return done(null, false); // <-- Usuario no encontrado
+        if (user) return done(null, user); 
+        return done(null, false); 
     } catch (error) {
         return done(null, payload);
     }

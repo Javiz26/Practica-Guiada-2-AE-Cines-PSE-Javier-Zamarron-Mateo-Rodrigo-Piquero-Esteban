@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import prisma from '../libs/prisma';        // ← adaptado a nuestro proyecto
-import { Role } from '../../prisma/generated/prisma';  // ← adaptado a nuestro proyecto
+import prisma from '../libs/prisma';        
+import { Role } from '../../prisma/generated/prisma';  
 
 export const AuthService = {
 

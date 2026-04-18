@@ -14,7 +14,7 @@ export const fetchCinemas = async (req: Request, res: Response): Promise<void> =
 };
 export const createCinema = async (req: Request, res: Response): Promise<void> => {
   try {
-    const cinemaData = req.body; // Aquí podrías validar con un DTO específico
+    const cinemaData = req.body; 
     const newCinema = await cinemaService.createCinema(cinemaData);
 
     res.status(201).json({ success: true, data: newCinema });

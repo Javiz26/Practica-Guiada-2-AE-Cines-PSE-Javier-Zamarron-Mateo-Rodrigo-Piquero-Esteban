@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(passport.initialize());
 passport.use(JWTStrategy);
 
-// Enganchamos las rutas de cines y películas
+// Enganchamos las rutas de cines, películas y autenticación
 app.use('/api', movieRoutes);
 app.use('/api', cinemaRoutes);
 app.use('/api/auth', authRoutes);

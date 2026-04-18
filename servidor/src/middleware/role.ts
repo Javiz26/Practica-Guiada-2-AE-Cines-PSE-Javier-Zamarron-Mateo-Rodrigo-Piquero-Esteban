@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { Role } from '../../prisma/generated/prisma'; // ← no '@prisma/client' como el slide
+import { Role } from '../../prisma/generated/prisma'; 
 
 export const authorize = (allowedRoles: Role[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
