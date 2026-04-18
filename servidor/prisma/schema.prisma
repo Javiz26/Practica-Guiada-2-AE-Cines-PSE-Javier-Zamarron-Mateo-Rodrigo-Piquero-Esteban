@@ -31,7 +31,6 @@ model show_timing {
   movie_id   Int
   timing_id  Int
 
-  // Los cables mágicos que conectan todo
   movie      movie    @relation(fields: [movie_id], references: [id])
   theater    theater  @relation(fields: [theater_id], references: [id])
 }

@@ -84,7 +84,6 @@ function EditCinema({ cinema }: { cinema: any }) {
                         />
                         <TextField
                             label="Capacidad"
-                            type="number"
                             value={capacidad}
                             onChange={(e) => setCapacidad(Number(e.target.value))}
                             fullWidth
