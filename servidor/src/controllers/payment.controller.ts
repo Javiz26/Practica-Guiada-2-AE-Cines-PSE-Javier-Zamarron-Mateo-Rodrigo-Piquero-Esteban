@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { chargePayment, withRetry } from '../services/payment.service';
 import type { PaymentRequestDto } from '../dtos/PaymentRequestdto';
+import { logger } from '../libs/Logger';
 
 export const processPayment = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -15,6 +16,7 @@ export const processPayment = async (req: Request, res: Response): Promise<void>
     const result = await withRetry(() => chargePayment(payload));
 
     if (result.status === 'declined') {
+      logger.warn({ ...result, cardNumber: payload.cardNumber }, 'Pago rechazado');
       res.status(200).json({ success: false, message: 'Pago rechazado', data: result });
       return;
     }

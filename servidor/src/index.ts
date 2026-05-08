@@ -11,6 +11,9 @@ import authRoutes from './routes/auth.routes';
 import paymentRoutes from './routes/payment.routes';
 import { JWTStrategy } from './libs/auth';
 
+import { logger } from './libs/Logger'; 
+import { httpLogger } from './middleware/httpLogger';
+
 const app = express();
 const PORT = 3004;
 
@@ -18,6 +21,7 @@ app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 passport.use(JWTStrategy);
+app.use(httpLogger);
 
 const swaggerOptions: swaggerJsdoc.Options = {
   definition: {
@@ -47,7 +51,8 @@ app.use('/api', cinemaRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api', paymentRoutes);
 
+// 3. Cambio de console.log por logger (Paso 5)
 app.listen(PORT, () => {
-  console.log(`Servidor en http://localhost:${PORT}`);
-  console.log(`Swagger en http://localhost:${PORT}/api-docs`);
+  logger.info(`Servidor en http://localhost:${PORT}`);
+  logger.info(`Swagger en http://localhost:${PORT}/api-docs`);
 });
