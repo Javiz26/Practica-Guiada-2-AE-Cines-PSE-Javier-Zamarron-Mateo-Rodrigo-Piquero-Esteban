@@ -11,7 +11,7 @@ import authRoutes from './routes/auth.routes';
 import paymentRoutes from './routes/payment.routes';
 import { JWTStrategy } from './libs/auth';
 
-import { logger } from './libs/Logger'; 
+import { logger } from './libs/logger'; 
 import { httpLogger } from './middleware/httpLogger';
 
 const app = express();

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { chargePayment, withRetry } from '../services/payment.service';
 import type { PaymentRequestDto } from '../dtos/PaymentRequestdto';
-import { logger } from '../libs/Logger';
+import { logger } from '../libs/logger';
 
 export const processPayment = async (req: Request, res: Response): Promise<void> => {
   try {

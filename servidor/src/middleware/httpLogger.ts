@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { logger } from "../libs/Logger";
+import { logger } from "../libs/logger";
 export function httpLogger(req: Request, res: Response, next: NextFunction) {
   const startedAt = Date.now();
   res.on("finish", () => {
