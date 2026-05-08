@@ -52,7 +52,7 @@ export const getFilteredCinemas = async (filters: CinemaFilterDTO) => {
       capacidad: cine.capacity
     };
 
-    // Si pidieron catálogo y el cine tiene sesiones, lo mapeamos bonito
+    // Si pidieron catálogo y el cine tiene sesiones
     if (filters.withCatalog && cine.show_timing) {
       resultado.cartelera = cine.show_timing.map((st: any) => ({
         fecha: st.day,
